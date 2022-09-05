@@ -29,10 +29,6 @@ jobs:
           command: |
             npm run api:install
       - run:
-          name: Front-End Lint
-          command: |
-            npm run frontend:lint
-      - run:
           name: Front-End Build
           command: |
             echo "Build the frontend app"
