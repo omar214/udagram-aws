@@ -9,11 +9,11 @@ jobs:
   build:
     docker:
       # the base image can run most needed actions with orbs
-      - image: "cimg/node:14.15"
+      - image: 'cimg/node:14.15'
     steps:
       # install node and checkout code
       - node/install:
-          node-version: '14.15'         
+          node-version: '16.17'
       - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
@@ -24,43 +24,46 @@ jobs:
             echo "NPM --version" 
             echo $(npm --version)
             npm run frontend:install
-      # TODO: Install dependencies in the the backend API          
       - run:
           name: Install API Dependencies
           command: |
-           echo "TODO: Install dependencies in the the backend API  "
-      # TODO: Lint the frontend
+            npm run api:install
       - run:
           name: Front-End Lint
           command: |
-            echo "TODO: Lint the frontend"
-      # TODO: Build the frontend app
+            npm run frontend:lint
       - run:
           name: Front-End Build
           command: |
-            echo "TODO: Build the frontend app"
-      # TODO: Build the backend API      
+            echo "Build the frontend app"
+            npm run frontend:build
       - run:
           name: API Build
           command: |
-            echo "TODO: Build the backend API"
+            echo "Build the backend API"
+            npm run api:build
   # deploy step will run only after manual approval
   deploy:
     docker:
-      - image: "cimg/base:stable"
+      - image: 'cimg/base:stable'
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: '14.15' 
+          node-version: '16.17'
       - eb/setup
       - aws-cli/setup
       - checkout
       - run:
-          name: Deploy App
-          # TODO: Install, build, deploy in both apps
+          name: Deploy api
           command: |
-            echo "# TODO: Install, build, deploy in both apps"
-            
+            echo "deploy back-end"
+            npm run api:deploy
+      - run:
+          name: Deploy front
+          command: |
+            echo "deploy  front end"
+            npm run frontend:deploy
+
 workflows:
   udagram:
     jobs:
