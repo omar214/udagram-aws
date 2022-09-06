@@ -18,7 +18,10 @@
 
 - [x] configure circleCI
 
-- [x] add screens 
-- [ ] add documentaion
+- [x] add screens
+
+- [x] add documentaion
+
+- [x] add diagrams
 
 - [ ] test add images
