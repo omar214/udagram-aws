@@ -12,10 +12,12 @@
 
   - [x] test if front connects to api
 
-- [ ] deploy FE
+- [x] deploy FE
 
-  - [ ] test FE url
+  - [x] test FE url
 
-- [ ] configure circleCI
+- [x] configure circleCI
 
-- [ ] add screens
+- [ ] add screens and documentaion
+
+- [ ] test add images
